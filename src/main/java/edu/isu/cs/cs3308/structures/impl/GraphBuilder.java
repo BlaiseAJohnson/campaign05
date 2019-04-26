@@ -1,4 +1,4 @@
-package edu.isu.cs.cs3308;
+package edu.isu.cs.cs3308.structures.impl;
 
 import edu.isu.cs.cs3308.structures.Vertex;
 import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph;
@@ -15,20 +15,8 @@ public class GraphBuilder {
     private boolean isWeighted = false;
     private AdjacencyListGraph<String, Integer> graph;
 
-    public void setIsWeighted(boolean isWeighted) {
-        this.isWeighted = isWeighted;
-    }
-
-    public boolean getIsWeighted() {
-        return isWeighted;
-    }
-
     public AdjacencyListGraph<String, Integer> getGraph() {
         return graph;
-    }
-
-    public GraphBuilder(boolean isWeighted) {
-        this.isWeighted = isWeighted;
     }
 
     public AdjacencyListGraph<String, Integer> buildGraph(String fileName) {
@@ -38,7 +26,7 @@ public class GraphBuilder {
             build(nodes);
             return graph;
         }catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("File could not be found...");
         }
 
         return null;
