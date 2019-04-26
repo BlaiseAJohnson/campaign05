@@ -11,13 +11,13 @@ public interface Graph<V, E> {
     int numVertices();
 
     /** Returns an iteration of all the vertices of the graph */
-    Iterator<Vertex<V>> vertices();
+    Iterable<Vertex<V>> vertices();
 
     /** Returns the number of edges of the graph */
     int numEdges();
 
     /** Returns an iteration of all edges of the graph */
-    Iterator<Edge<E>> edges();
+    Iterable<Edge<E>> edges();
 
     /** Returns the edge from vertex u to vertex v, if one exists, otherwise returns null.
      *  For an undirected graph, there is no difference between getEdge(u, v) and getEdge(v, u)
@@ -43,12 +43,12 @@ public interface Graph<V, E> {
     int inDegree(Vertex<V> v);
 
     /** Returns an iteration of all outgoing edges from vertex v */
-    Iterator<Edge<E>> outgoingEdges(Vertex<V> v);
+    Iterable<Edge<E>> outgoingEdges(Vertex<V> v);
 
     /** Returns an iteration of all incoming edges to vertex v. For an undirected graph, this
      *  returns the same collection as does outgoingEdges(v)
      */
-    Iterator<Edge<E>> incomingEdges(Vertex<V> v);
+    Iterable<Edge<E>> incomingEdges(Vertex<V> v);
 
     /** Creates and returns a new Vertex storing element v */
     Vertex<V> insertVertex(V v);
@@ -56,7 +56,7 @@ public interface Graph<V, E> {
     /** Creates and returns a new Edge from vertex u to vertex v, storing element e; an error occurs
      * if there already exists an edge from u to v
      */
-    void insertEdge(Vertex<V> u, Vertex<V> v, E e);
+    Edge<E> insertEdge(Vertex<V> u, Vertex<V> v, E e);
 
     /** Removes vertex v and all its incident edges from the graph */
     V removeVertex(Vertex<V> v);
