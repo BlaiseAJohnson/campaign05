@@ -163,9 +163,9 @@ When you have completed the assignment (all tests pass) or it is reaching midnig
 
 ## Hints
 
-* I would suggest utilizing the provide Graph ADT interface as the basis of a weighted and unweighted graph implementation using an Adjacency List based approach. Though you are more than welcome to use an Adjacency Matrix based approach as well.
+* I would suggest utilizing the provide Graph ADT interface as the basis of a isWeighted and unweighted graph implementation using an Adjacency List based approach. Though you are more than welcome to use an Adjacency Matrix based approach as well.
 
-* I would suggest creating a class which processes the input file using a Java NIO operations and `Files.readAllLines()` method to extract a List<String> of all lines in the input file. From this I would then parse each line and update the graph. Creating either a weighted or unweighted graph as necessary.
+* I would suggest creating a class which processes the input file using a Java NIO operations and `Files.readAllLines()` method to extract a List<String> of all lines in the input file. From this I would then parse each line and update the graph. Creating either a isWeighted or unweighted graph as necessary.
 
 * The nodes of the graph should probably be some sort of NetworkComponent which is capable of storing a Map relating a label to a value (i.e., java.util.Map implementation such as java.util.HashMap).
 

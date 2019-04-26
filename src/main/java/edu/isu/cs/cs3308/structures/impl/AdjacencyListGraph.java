@@ -60,6 +60,16 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
         else return null;
     }
 
+    public Vertex<V> getVertex(V element) {
+        for (Vertex<V> vertex: vertices) {
+            if (vertex.getElement().equals(element)) {
+                return vertex;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Returns an array containing the two endpoint vertices of edge e. If the graph is directed
      * the first vertex is the origin and the second is the destination.

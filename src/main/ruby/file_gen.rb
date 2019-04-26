@@ -7,7 +7,7 @@ options = {
   :num_nodes => 15,
   :max_edges => 5,
   :min_edges => 1,
-  :weighted => false,
+  :isWeighted => false,
   :low_weight => 50,
   :high_weight => 450,
   :file => "output.graph"
@@ -29,8 +29,8 @@ OptionParser.new do |opts|
     options[:min_edges] = min.to_i
   end
 
-  opts.on("-w", "--weighted", "Sets that the generated graph is weighted.") do
-    options[:weighted] = true
+  opts.on("-w", "--isWeighted", "Sets that the generated graph is isWeighted.") do
+    options[:isWeighted] = true
   end
 
   opts.on("-lLOWER", "--lower-weight=LOWER", "Sets the minimum weight") do |lower|
@@ -82,7 +82,7 @@ edges.each do |node, list|
   String line = "#{node}:"
   list.each do |l|
     line += " #{l}"
-    if options[:weighted]
+    if options[:isWeighted]
       line += "(#{rand(options[:lower_weight]..options[:upper_weight])})"
     end
   end
