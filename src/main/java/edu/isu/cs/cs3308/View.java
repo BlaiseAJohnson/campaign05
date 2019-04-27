@@ -1,5 +1,6 @@
 package edu.isu.cs.cs3308;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -12,7 +13,7 @@ public class View {
         return input.next();
     }
 
-    public static int printMenu(Scanner input) {
+    public static String printMenu(Scanner input) {
         System.out.println(
                 "\n" +
                 "Menu\n" +
@@ -25,6 +26,41 @@ public class View {
 
         System.out.print("Selection: ");
 
-        return input.nextInt();
+        return input.next();
+    }
+
+    public static void printConfig(List<String[]> routes) {
+        System.out.println("Current Network Config:");
+        System.out.println("-----------------------");
+
+        for (String[] route: routes) {
+            System.out.println(String.format("%s -> %s", route[0], route[1]));
+        }
+
+        System.out.println("-----------------------\n");
+    }
+
+    public static String[] shortestPathNodes(Scanner input) {
+        String[] pathNodes = new String[2];
+
+        System.out.print("Starting Node: ");
+        pathNodes[0] = input.next();
+        System.out.println();
+        System.out.print("Ending Node: ");
+        pathNodes[1] = input.next();
+        System.out.println();
+
+        return pathNodes;
+    }
+
+    public static void printShortestPath(List<String[]> routeList) {
+        System.out.println("Path:");
+        System.out.println("-----");
+
+        for (String[] route: routeList) {
+            System.out.println(String.format("   %s -> %s", route[1], route[0]));
+        }
+
+        System.out.println("\n");
     }
 }

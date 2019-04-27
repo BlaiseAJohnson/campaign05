@@ -1,7 +1,7 @@
 # Campaign 5 - Graphs (Due April 28, 2019)
 
 ## Introduction
-This is the final assignment for the course. The goals of this assignment is to provide you with the opportunity to implement and experiment with graph data structures, and to gain experience in the implementation of graph algorithms.
+This is the final assignment for the course. The goals of this assignment is to provide you with the opportunity to implement and experiment with _graph data structures, and to gain experience in the implementation of _graph algorithms.
 
 **Note that there are no tests** for this project.
 
@@ -30,7 +30,7 @@ Below is an example of output from the program, use this to help define the oper
 ```
 Welcome to Network Path Analyzer
 
-Enter A Network Description File Name: data/test.graph
+Enter A Network Description File Name: data/test._graph
 
 Menu
 ----
@@ -145,7 +145,7 @@ Goodbye!
 I have provided a Graph ADT and interfaces for the Vertex and Edges in the package named: `edu.isu.cs.cs3308.structures`
 
 
-The folder `data` contains sample graph data files for use in testing your program. Additionally, there is a ruby file in `src/main/ruby` called `file_gen.rb` which is capable of generating additional data files.
+The folder `data` contains sample _graph data files for use in testing your program. Additionally, there is a ruby file in `src/main/ruby` called `file_gen.rb` which is capable of generating additional data files.
 
 ## Submission
 When you have completed the assignment (all tests pass) or it is reaching midnight of the due date, make sure you have completed the following:
@@ -163,10 +163,10 @@ When you have completed the assignment (all tests pass) or it is reaching midnig
 
 ## Hints
 
-* I would suggest utilizing the provide Graph ADT interface as the basis of a isWeighted and unweighted graph implementation using an Adjacency List based approach. Though you are more than welcome to use an Adjacency Matrix based approach as well.
+* I would suggest utilizing the provide Graph ADT interface as the basis of a isWeighted and unweighted _graph implementation using an Adjacency List based approach. Though you are more than welcome to use an Adjacency Matrix based approach as well.
 
-* I would suggest creating a class which processes the input file using a Java NIO operations and `Files.readAllLines()` method to extract a List<String> of all lines in the input file. From this I would then parse each line and update the graph. Creating either a isWeighted or unweighted graph as necessary.
+* I would suggest creating a class which processes the input file using a Java NIO operations and `Files.readAllLines()` method to extract a List<String> of all lines in the input file. From this I would then parse each line and update the _graph. Creating either a isWeighted or unweighted _graph as necessary.
 
-* The nodes of the graph should probably be some sort of NetworkComponent which is capable of storing a Map relating a label to a value (i.e., java.util.Map implementation such as java.util.HashMap).
+* The nodes of the _graph should probably be some sort of NetworkComponent which is capable of storing a Map relating a label to a value (i.e., java.util.Map implementation such as java.util.HashMap).
 
 If you need any additional clarification please seek guidance via Discord, at my office hours, or by appointment via youcanbook.me

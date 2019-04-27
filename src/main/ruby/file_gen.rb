@@ -10,7 +10,7 @@ options = {
   :isWeighted => false,
   :low_weight => 50,
   :high_weight => 450,
-  :file => "output.graph"
+  :file => "output._graph"
 }
 OptionParser.new do |opts|
   opts.banner = "Usage: file_gen.rb [options]"
@@ -29,7 +29,7 @@ OptionParser.new do |opts|
     options[:min_edges] = min.to_i
   end
 
-  opts.on("-w", "--isWeighted", "Sets that the generated graph is isWeighted.") do
+  opts.on("-w", "--isWeighted", "Sets that the generated _graph is isWeighted.") do
     options[:isWeighted] = true
   end
 

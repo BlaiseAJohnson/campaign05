@@ -1,9 +1,6 @@
 package edu.isu.cs.cs3308.structures.impl;
 
 import edu.isu.cs.cs3308.structures.Vertex;
-import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -49,15 +46,18 @@ public class GraphBuilder {
         if (connections[0].contains(":")) {
             connections[0].replace(":", "");
         }
+        if (connections[1].contains("(")) {
+            isWeighted = true;
+        }
 
         return connections;
     }
 
 
     private void buildConnections(AdjacencyListGraph<String, Integer> graph, String[] connections) {
-        Vertex<String> origin = graph.getVertex(connections[0]);
+        Vertex<String> origin = graph.getVertex(connections[0].replace(":", ""));
         if (origin == null) {
-            origin = graph.insertVertex(connections[0]);
+            origin = graph.insertVertex(connections[0].replace(":", ""));
         }
 
         for (int i = 1; i < connections.length; i++) {

@@ -224,9 +224,14 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
     //                                 //
     //---------------------------------//
 
-    private class InnerVertex implements Vertex<V> {
+    public class InnerVertex implements Vertex<V> {
 
         private V element;
+        private List<Edge<E>> outgoing = new LinkedList<>();
+        private List<Edge<E>> incoming = new LinkedList<>();
+        private Vertex<V> previousNode;
+        private int cost;
+        private boolean isKnown;
 
         public InnerVertex(V element) {
             this.element = element;
@@ -245,7 +250,11 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
          */
         @Override
         public List<Edge<E>> getOutgoing() {
-            return null;
+            return outgoing;
+        }
+
+        public void addOutgoing(Edge<E> edge) {
+            outgoing.add(edge);
         }
 
         /**
@@ -253,7 +262,46 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
          */
         @Override
         public List<Edge<E>> getIncoming() {
-            return null;
+            return incoming;
+        }
+
+        public void addIncoming(Edge<E> edge) {
+            incoming.add(edge);
+        }
+
+        @Override
+        public String toString() {
+            return element.toString().replace(":", "");
+        }
+
+        public Vertex<V> getPreviousNode() {
+            return previousNode;
+        }
+
+        public void setPreviousNode(Vertex<V> previousNode) {
+            this.previousNode = previousNode;
+        }
+
+        public int getCost() {
+            return cost;
+        }
+
+        public void setCost(int cost) {
+            this.cost = cost;
+        }
+
+        public boolean isKnown() {
+            return isKnown;
+        }
+
+        public void setKnown(boolean known) {
+            isKnown = known;
+        }
+
+        public void initialize() {
+            setCost(Integer.MAX_VALUE);
+            setKnown(false);
+            setPreviousNode(null);
         }
     }
 
@@ -267,7 +315,7 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
     //                                 //
     //---------------------------------//
 
-    private class InnerEdge implements Edge<E> {
+    public class InnerEdge implements Edge<E> {
 
         private E element;
         private Vertex<V> from;
@@ -277,6 +325,9 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
             this.element = element;
             this.from = from;
             this.to = to;
+
+            ((InnerVertex) from).addOutgoing(this);
+            ((InnerVertex) to).addIncoming(this);
         }
 
         /**
@@ -284,7 +335,7 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
          */
         @Override
         public E getElement() {
-            return null;
+            return element;
         }
 
         /**
@@ -292,7 +343,11 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
          */
         @Override
         public Vertex<V>[] getEndpoints() {
-            return new Vertex[0];
+            Vertex<V>[] endPoints = new Vertex[2];
+            endPoints[0] = from;
+            endPoints[1] = to;
+
+            return endPoints;
         }
     }
 }
