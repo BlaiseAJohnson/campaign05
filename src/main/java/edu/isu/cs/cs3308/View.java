@@ -63,4 +63,21 @@ public class View {
 
         System.out.println("\n");
     }
+
+    public static String routingTableNode(Scanner input) {
+        System.out.print("Node to view: ");
+        return input.next();
+    }
+
+    public static void printRoutingTable(List<String[]> nodeList) {
+        System.out.println("------------------------");
+        System.out.println("Destination         Next");
+        System.out.println("-----------         ----");
+
+        for (String[] node: nodeList) {
+            System.out.println(String.format("%s                  %s", node[0], node[1]));
+        }
+
+        System.out.println("------------------------");
+    }
 }

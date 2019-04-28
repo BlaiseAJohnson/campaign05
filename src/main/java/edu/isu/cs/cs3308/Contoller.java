@@ -20,10 +20,10 @@ public class Contoller {
                 case "0":
                     View.printConfig(Model.networkConfig(graph));
                     break;
-//                case "1":
-//                    String node = View.routingTableNode();
-//                    View.printRoutingTable(Model.routingTable(graph, node));
-//                    break;
+                case "1":
+                    String node = View.routingTableNode(scanner);
+                    View.printRoutingTable(Model.routingTable(graph, node));
+                    break;
                 case "2":
                     String[] nodes = View.shortestPathNodes(scanner);
                     View.printShortestPath(Model.shortestPath(graph, nodes));

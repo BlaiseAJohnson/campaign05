@@ -41,14 +41,16 @@ public class Model {
             Stack<Vertex<String>> pathStack = loadPath(graph, destination);
             return formatPath(pathStack);
         }
-        else {
-            List<String[]> invalidPathList = new LinkedList<>();
-            String[] invalidPath = new String[2];
-            invalidPath[0] = "Invalid";
-            invalidPath[1] = "Path";
-            invalidPathList.add(invalidPath);
-            return invalidPathList;
+        return invalid();
+    }
+
+    public static List<String[]> routingTable(Graph<String, Integer> graph, String node) {
+        if (verifyNode(graph, node)) {
+            Vertex<String> source = ((AdjacencyListGraph<String, Integer>) graph).getVertex(node);
+            breadthFirstSearch(graph, node);
+            return loadRoute(graph, source);
         }
+        return invalid();
     }
 
     private static void dijkstra(Graph<String, Integer> graph, InnerVertex source) {
@@ -74,6 +76,32 @@ public class Model {
                         currentOpposite.setCost(currentVertex.getCost() + edge.getElement());
                         currentOpposite.setPreviousNode(currentVertex);
                     }
+                }
+            }
+        }
+    }
+
+    private static void breadthFirstSearch(Graph<String, Integer> graph, String origin) {
+        for (Vertex<String> vertex: graph.vertices()) {
+            ((InnerVertex) vertex).initialize();
+        }
+
+        LinkedList<Vertex<String>> queue = new LinkedList<>();
+        InnerVertex start = (InnerVertex) ((AdjacencyListGraph<String, Integer>) graph).getVertex(origin);
+
+        start.setKnown(true);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            InnerVertex next = (InnerVertex) queue.poll();
+            List<Edge<Integer>> edges = next.getOutgoing();
+
+            for (Edge<Integer> edge: edges) {
+                InnerVertex incident = (InnerVertex) graph.opposite(next, edge);
+                if (!incident.isKnown()) {
+                    incident.setPreviousNode(next);
+                    incident.setKnown(true);
+                    queue.add(incident);
                 }
             }
         }
@@ -119,6 +147,26 @@ public class Model {
         return formattedStringList;
     }
 
+    private static List<String[]> loadRoute(Graph<String, Integer> graph, Vertex<String> node) {
+        List<String[]> formattedStringList = new LinkedList<>();
+
+        for (Vertex<String> vertex: graph.vertices()) {
+            if (vertex.equals(node)) continue;
+
+            String[] formattedString = new String[2];
+            formattedString[0] = vertex.toString();
+
+            while(((InnerVertex) vertex).getPreviousNode() != node) {
+                vertex = ((InnerVertex) vertex).getPreviousNode();
+            }
+
+            formattedString[1] = vertex.toString();
+            formattedStringList.add(formattedString);
+        }
+
+        return formattedStringList;
+    }
+
     private static boolean verifyNodes(Graph<String, Integer> graph, String[] nodes) {
         boolean verified = true;
 
@@ -131,5 +179,24 @@ public class Model {
         }
 
         return verified;
+    }
+
+    private static boolean verifyNode(Graph<String, Integer> graph, String node) {
+        boolean verified = true;
+
+        if (((AdjacencyListGraph<String, Integer>) graph).getVertex(node) == null) {
+            verified = false;
+        }
+
+        return verified;
+    }
+
+    private static List<String[]> invalid() {
+        List<String[]> invalidPathList = new LinkedList<>();
+        String[] invalidPath = new String[2];
+        invalidPath[0] = "Invalid";
+        invalidPath[1] = "Path";
+        invalidPathList.add(invalidPath);
+        return invalidPathList;
     }
 }
