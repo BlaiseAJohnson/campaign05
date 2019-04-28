@@ -1,3 +1,9 @@
+/**
+ * Blaise Johnson
+ * Isaac Griffith
+ * CS 3308
+ * 4/28/19
+ */
 package edu.isu.cs.cs3308.structures.impl;
 
 import edu.isu.cs.cs3308.structures.Edge;
@@ -60,6 +66,12 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
         else return null;
     }
 
+    /**
+     * Returns the vertex with the specified element, if one exists, otherwise returns null.
+     *
+     * @param element
+     * @return
+     */
     public Vertex<V> getVertex(V element) {
         for (Vertex<V> vertex: vertices) {
             if (vertex.getElement().equals(element)) {
@@ -224,6 +236,9 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
     //                                 //
     //---------------------------------//
 
+    /**
+     * Inner Vertex class for Adjacency List Graph
+     */
     public class InnerVertex implements Vertex<V> {
 
         private V element;
@@ -253,6 +268,10 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
             return outgoing;
         }
 
+        /**
+         * Adds an outgoing edge to this node's list of outgoing edges.
+         * @param edge
+         */
         public void addOutgoing(Edge<E> edge) {
             outgoing.add(edge);
         }
@@ -265,6 +284,10 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
             return incoming;
         }
 
+        /**
+         * Adds an incoming edge to this node's list of incoming edges.
+         * @param edge
+         */
         public void addIncoming(Edge<E> edge) {
             incoming.add(edge);
         }
@@ -274,30 +297,60 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
             return element.toString().replace(":", "");
         }
 
+        /**
+         * Returns this node's previous node in a path.
+         * @return
+         */
         public Vertex<V> getPreviousNode() {
             return previousNode;
         }
 
+        /**
+         * Sets this node's previous node in a path.
+         * @param previousNode
+         */
         public void setPreviousNode(Vertex<V> previousNode) {
             this.previousNode = previousNode;
         }
 
+        /**
+         * Returns this node's cost in a path through a weighted graph.
+         * @return
+         */
         public int getCost() {
             return cost;
         }
 
+        /**
+         * Sets this node's cost in a path through a weighted graph.
+         * @param cost
+         */
         public void setCost(int cost) {
             this.cost = cost;
         }
 
+        /**
+         * Represents whether this node's cost is known, or if it has
+         * been visited.
+         * @return
+         */
         public boolean isKnown() {
             return isKnown;
         }
 
+        /**
+         * Sets whether this node's cost is known, or if it has
+         * been visited.
+         * @param known
+         */
         public void setKnown(boolean known) {
             isKnown = known;
         }
 
+        /**
+         * Initializes the cost, knowledge, and previous node
+         * of this node.
+         */
         public void initialize() {
             setCost(Integer.MAX_VALUE);
             setKnown(false);
@@ -315,6 +368,9 @@ public class AdjacencyListGraph<V, E> implements Graph<V, E> {
     //                                 //
     //---------------------------------//
 
+    /**
+     * Inner Edge class for Adjacency List Graph
+     */
     public class InnerEdge implements Edge<E> {
 
         private E element;

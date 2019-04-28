@@ -1,3 +1,9 @@
+/**
+ * Blaise Johnson
+ * Isaac Griffith
+ * CS 3308
+ * 4/28/19
+ */
 package edu.isu.cs.cs3308;
 
 import edu.isu.cs.cs3308.structures.Edge;
@@ -8,7 +14,16 @@ import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph.InnerVertex;
 
 import java.util.*;
 
+/**
+ * Model class for MVC
+ */
 public class Model {
+
+    /**
+     * Calculates the configuration of the given network.
+     * @param graph
+     * @return
+     */
     public static List<String[]> networkConfig(Graph<String, Integer> graph) {
         List<String[]> nodeList = new LinkedList<>();
 
@@ -21,17 +36,17 @@ public class Model {
             nodeList.add(currentEdgeToString);
         }
 
-        if (nodeList.isEmpty()) {
-            String[] emptyGraphMessage = new String[2];
-            emptyGraphMessage[0] = "EMPTY";
-            emptyGraphMessage[1] = "GRAPH";
-            nodeList.add(emptyGraphMessage);
-        }
-
         return nodeList;
     }
 
 
+    /**
+     * Calculates the shortest path between two network nodes
+     * based on the latency of their connections.
+     * @param graph
+     * @param pathNodes
+     * @return
+     */
     public static List<String[]> shortestPath(Graph<String, Integer> graph, String[] pathNodes) {
         if (verifyNodes(graph, pathNodes)) {
             Vertex<String> source = ((AdjacencyListGraph<String, Integer>) graph).getVertex(pathNodes[0]);
@@ -43,6 +58,13 @@ public class Model {
         return invalid();
     }
 
+
+    /**
+     * Calculates the routing table for a given node in a network.
+     * @param graph
+     * @param node
+     * @return
+     */
     public static List<String[]> routingTable(Graph<String, Integer> graph, String node) {
         if (verifyNode(graph, node)) {
             Vertex<String> source = ((AdjacencyListGraph<String, Integer>) graph).getVertex(node);
@@ -52,6 +74,13 @@ public class Model {
         return invalid();
     }
 
+
+    /**
+     * Dijkstra's algorithm for finding the shortest path through
+     * weighted graph.
+     * @param graph
+     * @param source
+     */
     private static void dijkstra(Graph<String, Integer> graph, InnerVertex source) {
         List<InnerVertex> unknownVertices = new LinkedList<>();
 
@@ -80,6 +109,13 @@ public class Model {
         }
     }
 
+
+    /**
+     * Traverses a graph breadth first while storing a reference to
+     * a node's parent in itself.
+     * @param graph
+     * @param origin
+     */
     private static void breadthFirstSearch(Graph<String, Integer> graph, String origin) {
         for (Vertex<String> vertex: graph.vertices()) {
             ((InnerVertex) vertex).initialize();
@@ -106,6 +142,13 @@ public class Model {
         }
     }
 
+
+    /**
+     * Removes the minimum weighted vertex from a list of
+     * vertices.
+     * @param list
+     * @return
+     */
     private static InnerVertex removeMin(List<InnerVertex> list) {
         InnerVertex minVertex = list.get(0);
 
@@ -118,6 +161,14 @@ public class Model {
         return minVertex;
     }
 
+
+    /**
+     * Stores the path of nodes from one node to another
+     * in a stack.
+     * @param graph
+     * @param destination
+     * @return
+     */
     private static Stack<Vertex<String>> loadPath(Graph<String, Integer> graph, Vertex<String> destination) {
         Stack<Vertex<String>> nodePath = new Stack<>();
         InnerVertex destinationNode = (InnerVertex) destination;
@@ -130,6 +181,12 @@ public class Model {
         return nodePath;
     }
 
+
+    /**
+     * Prepares a stack of nodes to be printed.
+     * @param nodeList
+     * @return
+     */
     private static List<String[]> formatPath(Stack<Vertex<String>> nodeList) {
         List<String[]> formattedStringList = new LinkedList<>();
 
@@ -146,6 +203,13 @@ public class Model {
         return formattedStringList;
     }
 
+
+    /**
+     * Prepares a routing table to be printed.
+     * @param graph
+     * @param node
+     * @return
+     */
     private static List<String[]> loadRoute(Graph<String, Integer> graph, Vertex<String> node) {
         List<String[]> formattedStringList = new LinkedList<>();
 
@@ -166,6 +230,13 @@ public class Model {
         return formattedStringList;
     }
 
+
+    /**
+     * Verifies two nodes provided in an array exist in a given graph.
+     * @param graph
+     * @param nodes
+     * @return
+     */
     private static boolean verifyNodes(Graph<String, Integer> graph, String[] nodes) {
         boolean verified = true;
 
@@ -180,6 +251,13 @@ public class Model {
         return verified;
     }
 
+
+    /**
+     * Verifies a given node exists in a given graph.
+     * @param graph
+     * @param node
+     * @return
+     */
     private static boolean verifyNode(Graph<String, Integer> graph, String node) {
         boolean verified = true;
 
@@ -190,6 +268,11 @@ public class Model {
         return verified;
     }
 
+
+    /**
+     * Gives an invalidation message to be printed.
+     * @return
+     */
     private static List<String[]> invalid() {
         List<String[]> invalidPathList = new LinkedList<>();
         String[] invalidPath = new String[2];

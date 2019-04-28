@@ -1,3 +1,9 @@
+/**
+ * Blaise Johnson
+ * Isaac Griffith
+ * CS 3308
+ * 4/28/19
+ */
 package edu.isu.cs.cs3308;
 
 import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph;
@@ -5,8 +11,14 @@ import edu.isu.cs.cs3308.structures.impl.GraphBuilder;
 
 import java.util.Scanner;
 
+/**
+ * Controller class for MVC
+ */
 public class Contoller {
+
     public static void main(String[] args){
+
+        // Retrieves file path and creates graph if possible
         Scanner scanner = new Scanner(System.in);
         String filePath = View.greet(scanner);
         GraphBuilder graphBuilder = new GraphBuilder();
@@ -14,7 +26,7 @@ public class Contoller {
         String selection = "0";
 
         if (graph == null || graph.numVertices() == 0) {
-            System.out.println("File could not be found or did not contain a graph!");
+            System.out.println("File could not be found or did not contain a network!");
             System.out.println("Program now terminating...");
             selection = "3";
         }
