@@ -8,13 +8,8 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class GraphBuilder {
-    private String filePath;
     private boolean isWeighted = false;
     private AdjacencyListGraph<String, Integer> graph;
-
-    public AdjacencyListGraph<String, Integer> getGraph() {
-        return graph;
-    }
 
     public AdjacencyListGraph<String, Integer> buildGraph(String fileName) {
         try {

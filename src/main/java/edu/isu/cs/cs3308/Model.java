@@ -5,7 +5,6 @@ import edu.isu.cs.cs3308.structures.Graph;
 import edu.isu.cs.cs3308.structures.Vertex;
 import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph;
 import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph.InnerVertex;
-import edu.isu.cs.cs3308.structures.impl.AdjacencyListGraph.InnerEdge;
 
 import java.util.*;
 
@@ -195,7 +194,7 @@ public class Model {
         List<String[]> invalidPathList = new LinkedList<>();
         String[] invalidPath = new String[2];
         invalidPath[0] = "Invalid";
-        invalidPath[1] = "Path";
+        invalidPath[1] = "Path or Node";
         invalidPathList.add(invalidPath);
         return invalidPathList;
     }

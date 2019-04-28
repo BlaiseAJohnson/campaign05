@@ -21,8 +21,7 @@ public class View {
                 "0. Print Current Network Config\n" +
                 "1. View Routing Table for Node\n" +
                 "2. Find Shortest Path Between Two Nodes\n" +
-                "3. Find Sarah Conner\n" +
-                "4. Exit\n");
+                "3. Exit\n");
 
         System.out.print("Selection: ");
 

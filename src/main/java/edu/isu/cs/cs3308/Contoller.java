@@ -13,26 +13,31 @@ public class Contoller {
         AdjacencyListGraph<String, Integer> graph = graphBuilder.buildGraph(filePath);
         String selection = "0";
 
-        while (!selection.equals("4")) {
-            selection = View.printMenu(scanner);
-
-            switch (selection) {
-                case "0":
-                    View.printConfig(Model.networkConfig(graph));
-                    break;
-                case "1":
-                    String node = View.routingTableNode(scanner);
-                    View.printRoutingTable(Model.routingTable(graph, node));
-                    break;
-                case "2":
-                    String[] nodes = View.shortestPathNodes(scanner);
-                    View.printShortestPath(Model.shortestPath(graph, nodes));
-                    break;
-//                case 3:
-//                    View.findSarahConner();
-            }
+        if (graph == null || graph.numVertices() == 0) {
+            System.out.println("File could not be found or did not contain a graph!");
+            System.out.println("Program now terminating...");
+            selection = "3";
         }
+        else {
+            while (!selection.equals("3")) {
+                selection = View.printMenu(scanner);
 
-        System.out.println("Until next time.");
+                switch (selection) {
+                    case "0":
+                        View.printConfig(Model.networkConfig(graph));
+                        break;
+                    case "1":
+                        String node = View.routingTableNode(scanner);
+                        View.printRoutingTable(Model.routingTable(graph, node));
+                        break;
+                    case "2":
+                        String[] nodes = View.shortestPathNodes(scanner);
+                        View.printShortestPath(Model.shortestPath(graph, nodes));
+                        break;
+                }
+            }
+
+            System.out.println("Until next time.");
+        }
     }
 }
